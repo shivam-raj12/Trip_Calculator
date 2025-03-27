@@ -1,4 +1,4 @@
-package com.example.tripcalculator
+package com.example.tripcalculator.screens.home
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -23,17 +23,17 @@ import kotlin.math.abs
 @Composable
 fun MoneyGraph(
     modifier: Modifier = Modifier,
-    step: Int = 25000,
-    currentMoney: Int
+    step: Long = 25000,
+    currentMoney: Long
 ) {
     val totalMoney =
         if (abs(currentMoney) <= step) step else ((abs(currentMoney) + step - 1) / step) * step
-    val progress = currentMoney.toFloat() / totalMoney.toFloat() * 360f
+    val progress = currentMoney.toDouble() / totalMoney.toDouble() * 360f
     val textMeasurer = rememberTextMeasurer()
     val progressAnimate = remember { Animatable(0f) }
     val textAnimate = remember { Animatable(0f) }
     LaunchedEffect(progress) {
-        progressAnimate.animateTo(progress, animationSpec = tween(1000))
+        progressAnimate.animateTo(progress.toFloat(), animationSpec = tween(1000))
     }
     LaunchedEffect(currentMoney) {
         textAnimate.animateTo(currentMoney.toFloat(), animationSpec = tween(1000))

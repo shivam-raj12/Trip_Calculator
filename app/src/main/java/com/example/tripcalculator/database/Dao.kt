@@ -15,6 +15,12 @@ interface Dao {
     @Query("SELECT * FROM History ORDER BY date DESC")
     fun getAll(): Flow<List<History>>
 
+    @Query("SELECT * FROM History WHERE amount>0 ORDER BY date DESC")
+    fun getAllProfit(): Flow<List<History>>
+
+    @Query("SELECT * FROM History WHERE amount<0 ORDER BY date DESC")
+    fun getAllLoss(): Flow<List<History>>
+
     @Update
     suspend fun update(history: History)
 

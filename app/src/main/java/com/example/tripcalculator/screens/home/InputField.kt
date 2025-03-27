@@ -1,4 +1,4 @@
-package com.example.tripcalculator
+package com.example.tripcalculator.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,7 +34,7 @@ import com.example.tripcalculator.ui.theme.Red
 
 @Composable
 fun InputField(
-    onButtonClick: (Int, String) -> Unit
+    onButtonClick: (Long, String) -> Unit
 ) {
     var amount by remember {
         mutableStateOf("")
@@ -104,7 +104,7 @@ fun InputField(
                 Button(
                     modifier = Modifier.weight(1f),
                     onClick = {
-                        onButtonClick(amount.toIntOrNull()?:0, message)
+                        onButtonClick(amount.toLongOrNull()?:0, message)
                         amount = ""
                         message = ""
                     },
@@ -117,7 +117,7 @@ fun InputField(
                 Button(
                     modifier = Modifier.weight(1f),
                     onClick = {
-                        onButtonClick(-(amount.toIntOrNull()?:0), message)
+                        onButtonClick(-(amount.toLongOrNull()?:0), message)
                         amount = ""
                         message = ""
                     },
