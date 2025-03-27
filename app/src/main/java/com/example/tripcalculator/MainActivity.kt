@@ -17,8 +17,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +32,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -47,7 +46,6 @@ import com.example.tripcalculator.ui.theme.Red
 import com.example.tripcalculator.ui.theme.TripCalculatorTheme
 import kotlinx.coroutines.launch
 import kotlin.math.abs
-import kotlin.math.sign
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -143,7 +141,7 @@ fun HistoryItem(
     modifier: Modifier = Modifier,
     history: History
 ) {
-    ElevatedCard(modifier, shape = MaterialTheme.shapes.small) {
+    OutlinedCard(modifier, shape = MaterialTheme.shapes.small) {
         Row(
             modifier= Modifier.padding(horizontal = 12.dp, 16.dp),
             verticalAlignment = Alignment.CenterVertically
