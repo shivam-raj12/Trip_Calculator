@@ -45,7 +45,7 @@ fun HistoryScreen() {
     LaunchedEffect(historyList) {
         totalAmount.animateTo(
             historyList.sumOf { it.amount }.toFloat(),
-            animationSpec = tween(1000)
+            animationSpec = tween(500)
         )
     }
     LazyColumn(
@@ -88,15 +88,23 @@ fun HistoryScreen() {
                         val loss = totalLossAmount
                         val max = profit.toString().length - loss.toString().length
                         Text(
-                            "Profit:${if (max.sign == -1) " ".repeat(-max) else ""} ₹${profit}",
-                            color = Green,
+                            text = if (profit > loss) {
+                                "Profit:${if (max.sign == -1) " ".repeat(abs(max)) else ""} ₹${profit}"
+                            } else {
+                                "Loss:${if (max.sign == 1) " ".repeat(max) else ""}   ₹${loss}"
+                            },
+                            color = if (profit>loss) Green else Red,
                             style = MaterialTheme.typography.titleSmall,
                             fontFamily = FontFamily.Monospace
                         )
                         Spacer(Modifier.height(6.dp))
                         Text(
-                            "Loss:${if (max.sign == 1) " ".repeat(max) else ""}   ₹${loss}",
-                            color = Red,
+                            text = if (profit > loss) {
+                                "Loss:${if (max.sign == 1) " ".repeat(max) else ""}   ₹${loss}"
+                            } else {
+                                "Profit:${if (max.sign == -1) " ".repeat(abs(max)) else ""} ₹${profit}"
+                            },
+                            color = if (profit>loss) Red else Green,
                             style = MaterialTheme.typography.titleSmall,
                             fontFamily = FontFamily.Monospace
                         )

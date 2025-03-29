@@ -101,18 +101,20 @@ fun InputField(
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(
-                    modifier = Modifier.weight(1f),
-                    onClick = {
-                        onButtonClick(amount.toLongOrNull()?:0, message)
-                        amount = ""
-                        message = ""
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Green
-                    )
-                ) {
-                    Text("PROFIT")
+                if (amount.firstOrNull() != '-') {
+                    Button(
+                        modifier = Modifier.weight(1f),
+                        onClick = {
+                            onButtonClick(amount.toLongOrNull() ?: 0, message)
+                            amount = ""
+                            message = ""
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Green
+                        )
+                    ) {
+                        Text("PROFIT")
+                    }
                 }
                 Button(
                     modifier = Modifier.weight(1f),
