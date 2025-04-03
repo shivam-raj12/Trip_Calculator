@@ -104,7 +104,8 @@ fun InputField(
                         },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Green
-                        )
+                        ),
+                        enabled = message.isNotBlank() && amount.isNotBlank()
                     ) {
                         Text("PROFIT")
                     }
@@ -118,7 +119,8 @@ fun InputField(
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Red
-                    )
+                    ),
+                    enabled = message.isNotBlank() && amount.isNotBlank()
                 ) {
                     Text("LOSS")
                 }
