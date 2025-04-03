@@ -24,6 +24,6 @@ fun getStandardFormattedDate(millisecond: Long): String {
     ) {
         "Yesterday, ${TIME_FORMAT.format(Date(millisecond))}"
     } else {
-        lastUpdateDate
+        getSimpleFormattedDate(millisecond)
     }
 }

@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -29,6 +30,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.tripcalculator.database.HistoryDatabase
 import com.example.tripcalculator.ui.theme.Green
 import com.example.tripcalculator.ui.theme.Red
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.sign
 
@@ -42,6 +44,7 @@ fun HistoryScreen() {
     val totalProfitAmount = historyList.filter { it.amount > 0 }.sumOf { it.amount }
     val totalLossAmount = historyList.filter { it.amount < 0 }.sumOf { abs(it.amount) }
 
+    val coroutineScope = rememberCoroutineScope()
     LaunchedEffect(historyList) {
         totalAmount.animateTo(
             historyList.sumOf { it.amount }.toFloat(),
@@ -119,7 +122,12 @@ fun HistoryScreen() {
         ) {
             HistoryItem(
                 modifier = Modifier.fillMaxWidth(),
-                history = it
+                history = it,
+                onDeleteHistory = { history ->
+                    coroutineScope.launch {
+                        database.delete(history)
+                    }
+                }
             )
         }
     }

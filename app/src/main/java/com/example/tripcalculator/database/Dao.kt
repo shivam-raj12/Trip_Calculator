@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -20,9 +19,6 @@ interface Dao {
 
     @Query("SELECT * FROM History WHERE amount<0 ORDER BY date DESC")
     fun getAllLoss(): Flow<List<History>>
-
-    @Update
-    suspend fun update(history: History)
 
     @Delete
     suspend fun delete(history: History)

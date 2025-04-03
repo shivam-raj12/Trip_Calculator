@@ -4,9 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -34,36 +31,12 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(it)
                     ) {
                         composable(
-                            route = "home_screen",
-                            enterTransition = {
-                                scaleIn(tween(200))
-                            },
-                            exitTransition = {
-                                scaleOut(tween(200))
-                            },
-                            popEnterTransition = {
-                                scaleIn(tween(200))
-                            },
-                            popExitTransition = {
-                                scaleOut(tween(200))
-                            }
+                            route = "home_screen"
                         ) {
                             HomeScreen(navController)
                         }
                         composable(
-                            route = "history_screen",
-                            enterTransition = {
-                                scaleIn(tween(200))
-                            },
-                            exitTransition = {
-                                scaleOut(tween(200))
-                            },
-                            popEnterTransition = {
-                                scaleIn(tween(200))
-                            },
-                            popExitTransition = {
-                                scaleOut(tween(200))
-                            }
+                            route = "history_screen"
                         ) {
                             HistoryScreen()
                         }
